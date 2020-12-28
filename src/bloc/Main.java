@@ -136,7 +136,7 @@ public class Main extends javax.swing.JFrame implements KeyListener {
         seleccionar.setDialogTitle("Guardar Documento");
         if (seleccionar.showDialog(null, "Guardar") == JFileChooser.APPROVE_OPTION) {
             archivo = seleccionar.getSelectedFile();
-            if (archivo.getName().endsWith("txt")) {
+            if (archivo.getName().endsWith("txt") || archivo.getName().endsWith("docx")) {
                 this.setName(archivo.getName().replace("txt", " "));
                 String Documento = txtarea.getText();
                 String mensaje = funciones.FuncGuardar(archivo, Documento);
@@ -164,12 +164,14 @@ public class Main extends javax.swing.JFrame implements KeyListener {
         if (seleccionar.showDialog(null, "Abrir") == JFileChooser.APPROVE_OPTION) {
             archivo = seleccionar.getSelectedFile();
             if (archivo.canRead()) {
-                if (archivo.getName().endsWith("txt")) {
+                if (archivo.getName().endsWith("txt") || archivo.getName().endsWith("docx")) {
                     String documento = funciones.FuncAbrir(archivo);
                     txtarea.setText(documento);
                 } else {
                     JOptionPane.showMessageDialog(null, "Archivo No Compatible");
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error code 2");
             }
         }
     }//GEN-LAST:event_btnopen
